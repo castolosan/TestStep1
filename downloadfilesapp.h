@@ -35,6 +35,7 @@ public:
     ~DownloadFilesApp();
     void downloadFunction();
 
+
 private slots:
 
     void finished(QNetworkReply* reply);
@@ -49,7 +50,7 @@ private slots:
 
     void on_quitButton_clicked();
 
-    void on_filesComboBox_currentIndexChanged(int index);
+    void on_filesComboBox_currentIndexChanged();
 
     void on_downloadButton_clicked();
 
@@ -57,17 +58,30 @@ private slots:
 
     void on_actionExit_triggered();
 
+    void error(QNetworkReply::NetworkError code);
+
+    void on_pauseButton_clicked();
+
+    void on_resumeButton_2_clicked();
+
 private:
     Ui::DownloadFilesApp *ui;
-    QNetworkAccessManager* manager, *manager2;
+    QNetworkAccessManager* manager;
     qint32 index2Download;
-    QStringList fileLinks;//for pass to fcn to download
+    QStringList fileLinks;
+    QStringList fileSizes;
     QUrl url;
     QUrl urlFileDownload;
     QString pathToSaveFile;
     QProgressDialog *progressDialog;
     QFile *file;
-    QNetworkReply *reply2; //Reply for file
+    QNetworkReply *replyNetwork; //Reply for file
+    QNetworkRequest currentRequest;
     bool flagCancelDownload;
+    QString fileName;
+    //add pause
+    int sizeFile;
+    long long sizeAtPause;
+    bool flagPauseFileActive;
 };
 #endif // DOWNLOADFILESAPP_H
