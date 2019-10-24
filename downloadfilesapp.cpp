@@ -245,6 +245,7 @@ void DownloadFilesApp::DownloadFinished()
         //check pause & resume bottons
         ui->pauseButton->setEnabled(false);
         ui->downloadButton->setEnabled(true);
+        ui->resumeButton_2->setEnabled(false);
         return;
     }else{
 
@@ -323,6 +324,7 @@ void DownloadFilesApp::cancelDownload()
     //disable bottons
     ui->downloadButton->setEnabled(true);
     ui->pauseButton->setEnabled(false);
+    ui->resumeButton_2->setEnabled(false);
     //delete progressDialog
     progressDialog->deleteLater();
     replyNetwork->abort();
@@ -378,6 +380,8 @@ void DownloadFilesApp::on_pauseButton_clicked()
 void DownloadFilesApp::on_resumeButton_2_clicked()
 {
     //qDebug() << "Resume download";
+    //activate pause
+    ui->pauseButton->setEnabled(true);
 
     downloadFunction();
 }
